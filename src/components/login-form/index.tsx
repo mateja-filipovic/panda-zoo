@@ -14,7 +14,7 @@ const LoginForm = (props: Props) => {
   }
 
   return (
-    <div className="container bg-white rounded-2xl md:rounded-none py-12 px-6 md:py-14 md:px-12">
+    <div className="container bg-white rounded-2xl md:rounded-none py-12 px-6 md:py-14 lg:px-6">
       <form>
 
         <div className="mb-6">
@@ -28,7 +28,7 @@ const LoginForm = (props: Props) => {
         </div>
 
         <div className="flex justify-center mt-12 w-40 mx-auto">
-          <button onClick={changeRoute} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change Password</button>
+          <button onClick={changeRoute} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Log in</button>
         </div>
       </form>
 
