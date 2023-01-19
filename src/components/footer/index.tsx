@@ -1,9 +1,10 @@
 type Props = {}
 
 const Footer = (props: Props) => {
+
   return (
     <footer className="bg-footer w-full">
-        <div className="container mx-auto px-24 bg-footer flex justify-between items-center h-52 mt-20">
+        <div className="container mx-auto px-24 bg-footer flex justify-between items-center h-52">
             <div className="text-white">
                 <p className="text-center">CONTACT<br/>US</p>
             </div>

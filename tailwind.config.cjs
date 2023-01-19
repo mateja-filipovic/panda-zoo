@@ -9,6 +9,10 @@ module.exports = {
       colors: {
         "primary": "#31E3C9",
         "footer": "#1A2125"
+      },
+      "fontFamily": {
+        "quick-sand": "QuickSand",
+        "nunito": "NunitoSans"
       }
     },
   },
