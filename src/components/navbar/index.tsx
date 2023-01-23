@@ -17,14 +17,11 @@ const Navbar = (props: Props) => {
     </a>
 
     <div className="flex md:order-2 items-center">
-        <BellAlertIcon className="h-6 w-6" />
-        <a className=" bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 ml-4">
-          <Link to="/login" className="block py-2 pl-3 pr-4 text-white rounded md:p-0" aria-current="page">
+        <BellAlertIcon className="h-6 w-6 hidden md:block" />
+          <Link to="/login" className="bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 ml-4" aria-current="page">
               Logout
           </Link>
-        </a>
         <button data-collapse-toggle="navbar-sticky" type="button" className="ml-48 inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
-          <span className="sr-only">Open main menu</span>
           <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
       </button>
 

@@ -8,6 +8,9 @@ import EventsPage from './scenes/events'
 import AnimalsPage from './scenes/animals'
 import ProfilePage from './scenes/profile'
 import LoginPage from './scenes/login'
+import AnimalDetailsPage from './scenes/animal-details'
+import RequestsPage from './scenes/requests'
+import AddAnimalPage from './scenes/add-animal'
 
 function App() {
 
@@ -23,6 +26,9 @@ function App() {
         <Route path="/animals" element={<AnimalsPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/animals/:id" element={<AnimalDetailsPage />} />
+        <Route path="/requests" element={<RequestsPage />} />
+        <Route path="/add-animal" element={<AddAnimalPage />} />
       </Routes>
       {!pathname.includes("login") && <Footer/>}
     </div>

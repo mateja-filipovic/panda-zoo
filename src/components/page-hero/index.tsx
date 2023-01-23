@@ -7,9 +7,8 @@ interface PageHeroProps{
 
 const PageHero = (props: PageHeroProps) => {
   return (
-    <header
-        className={`w-full h-96 bg-[url('${props.imageUrl}')] bg-cover bg-center flex items-center`}>
-        <div className="flex flex-col md:px-44">
+    <header className={`w-full h-96 bg-[url('${props.imageUrl}')] bg-cover bg-center flex items-center`}>
+        <div className="flex flex-col px-10 md:px-44">
             <h1 className="text-5xl text-white font-bold drop-shadow-lg">
               {props.title}
             </h1>

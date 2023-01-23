@@ -4,6 +4,8 @@ import { HandThumbUpIcon as HandThumbsUpIconSolid } from '@heroicons/react/24/so
 
 interface CardProps {
     imageUrl: string;
+    title: string;
+    textContent: string;
 }
 
 const Card = (props: CardProps) => {
@@ -16,22 +18,30 @@ const Card = (props: CardProps) => {
 
     return (
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md">
+
             <div className={`bg-[url('${props.imageUrl}')] h-60 relative`}>
-                <div className="absolute top-0 right-4 bg-blue-700 flex flex-col items-center">
-                    <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg" onClick={toggleLike}>
-                        {/* conditional render outline/solid*/}
-                        { renderOutlinedLikeButton && <HandThumbsUpIconOutlined className="h-12 w-12"/> }
-                        { !renderOutlinedLikeButton && <HandThumbsUpIconSolid className="h-12 w-12"/> }
+                <div className="absolute top-0 right-4 bg-primary flex flex-col items-center">
+                    <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg" onClick={toggleLike}>
+                        {/* conditional render outline/solid */}
+                        { renderOutlinedLikeButton && <HandThumbsUpIconOutlined className="h-12 w-12 text-black"/> }
+                        { !renderOutlinedLikeButton && <HandThumbsUpIconSolid className="h-12 w-12 text-black"/> }
                     </button>
-                    <p className="text-white">12 likes</p>
+                    <p className="text-black pb-2">12</p>
                 </div>
             </div>
+
             <div className="p-5">
-                <a href="#">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology acquisitions 2021</h5>
+                <a>
+                    <h5 className="mb-2 font-bold tracking-tight text-gray-900 font-quick-sand text-xl">
+                        {props.title}
+                    </h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+
+                <p className="mb-3 font-normal font-nunito text-gray-introduction">
+                    {props.textContent}
+                </p>
             </div>
+
         </div>
     )
 }
