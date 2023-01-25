@@ -1,6 +1,8 @@
 import BookNowForm from "@/components/book-now-form"
 import ImageWithText from "@/components/image-with-text"
 import PageHero from "@/components/page-hero"
+import { Pack } from "@/model/packs"
+import { PackageService } from "@/services/package-service"
 import { useState } from "react"
 
 
@@ -8,8 +10,20 @@ const PackagesPage = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState('promotions');
+  
+  // only promotions are shown at first
+  const [packages, setPackages] = useState<Pack[]>(PackageService.getPacks(true));
+  const [selectedPack, setSelectedPack] = useState<Pack | null>(null);
 
-  const handleFilterChange = (newFilterValue: string) => setSelectedFilter(newFilterValue);
+  const handleFilterChange = (newFilterValue: string) => {
+
+    if(newFilterValue == 'promotions')
+      setPackages(PackageService.getPacks(true));
+    else
+      setPackages(PackageService.getPacks(false));
+
+    setSelectedFilter(newFilterValue);
+  }
 
   const addBorderIfFilterApplied = (filterValue: string): string => {
     if(selectedFilter !== filterValue)
@@ -17,7 +31,11 @@ const PackagesPage = () => {
     return 'border-b-4 border-primary'
   }
 
-  const openModal = () => {
+  const openBookNowFormWithSelectedPack = (pack: Pack | null) => {
+    if(pack == null)
+      return;
+    
+    setSelectedPack(pack);
     setShowModal(true);
   }
 
@@ -37,14 +55,14 @@ const PackagesPage = () => {
       </div>
 
       <div className="container mx-auto grid grid-cols-1 gap-6 px-12 mt-12 md:grid-cols-3 md:px-40 md:mt-10">
-        <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} textLine2={'Unique animals'} renderBookNowButton={true} textLine1CustomStyle={'text-yellow-custom'} onClickEventDelegate={openModal} />
-        <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} textLine2={'Unique animals'} renderBookNowButton={true} textLine1CustomStyle={'text-yellow-custom'} onClickEventDelegate={openModal} />
-        <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} textLine2={'Unique animals'} renderBookNowButton={true} textLine1CustomStyle={'text-yellow-custom'} onClickEventDelegate={openModal} />
+        {
+          packages.map(pack => <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={pack.name} textLine2={pack.shortDescription} renderBookNowButton={true} textLine1CustomStyle={'text-yellow-custom'} onClickEventDelegate={openBookNowFormWithSelectedPack}  correspondingPack={pack}/> )
+        }
       </div>
 
     </div>
 
-    {showModal && <BookNowForm closeModalEventDelegate={closeModal}/> }
+    {showModal && <BookNowForm selectedPack = {selectedPack} closeModalEventDelegate={closeModal}/> }
     
     </>
   )

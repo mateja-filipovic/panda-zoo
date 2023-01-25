@@ -1,13 +1,16 @@
+import { Pack } from "@/model/packs";
 import { useNavigate } from "react-router-dom";
 
 interface ImageWithTextProps {
     imageUrl: string
     textLine1: string;
-    textLine2?: string;
+    textLine2: string;
     textLine1CustomStyle?: string;
     renderBookNowButton?: boolean;
     routeToAnimalDetails?: boolean;
-    onClickEventDelegate?: () => void;
+    onClickEventDelegate?: (pack: Pack | null) => void;
+
+    correspondingPack?: Pack;
 }
 //'@/assets/hero-image.jpeg'
 
@@ -24,7 +27,7 @@ const ImageWithText = (props: ImageWithTextProps) => {
   const handleBookNowOnClick = () => {
     if(props.onClickEventDelegate == undefined || props.onClickEventDelegate == null)
       return;
-    props.onClickEventDelegate();
+    props.onClickEventDelegate(props.correspondingPack ?? null);
   }
 
   const parseTextLine1CustomStyle = ():string => {

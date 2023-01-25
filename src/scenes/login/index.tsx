@@ -4,6 +4,7 @@ type Props = {}
 
 const LoginPage = (props: Props) => {
 
+  
   return (
     <div className="w-full h-screen bg-[url('@/assets/login_background.jpeg')] bg-cover bg-center px-2 md:px-0 
       flex flex-col justify-center md:flex-none">

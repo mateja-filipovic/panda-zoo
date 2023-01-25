@@ -1,6 +1,7 @@
 import { BellAlertIcon } from '@heroicons/react/24/outline'
 import Logo from '@/assets/logo.png'
 import { Link } from 'react-router-dom'
+import { UserService } from '@/services/user-service'
 
 type Props = {}
 
@@ -18,7 +19,7 @@ const Navbar = (props: Props) => {
 
     <div className="flex md:order-2 items-center">
         <BellAlertIcon className="h-6 w-6 hidden md:block" />
-          <Link to="/login" className="bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 ml-4" aria-current="page">
+          <Link to="/login" className="bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 ml-4" aria-current="page" onClick={() => UserService.logout()}>
               Logout
           </Link>
         <button data-collapse-toggle="navbar-sticky" type="button" className="ml-48 inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
