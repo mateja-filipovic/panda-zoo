@@ -1,4 +1,8 @@
-import Footer from '@/components/footer'
+import AnimalsBanner from '@/assets/AnimalsBanner.jpeg'
+import EventsBanner from '@/assets/EventsBanner.jpeg'
+import PackagesBanner from '@/assets/PackagesBanner.jpeg'
+
+
 import HeroImage from '@/components/hero-image'
 import ImageWithText from '@/components/image-with-text'
 import TextSection from '@/components/text-section'
@@ -18,9 +22,9 @@ const LandingPage = () => {
         />
       
       <div className="container mx-auto grid grid-cols-1 gap-6 px-12 mt-12 md:grid-cols-3 md:px-40 md:mt-16">
-        <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} textLine2={'Unique animals'} />
-        <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} textLine2={'Unique animals'} />
-        <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} textLine2={'Unique animals'} />
+        <ImageWithText imageUrl={'/src/assets/AnimalsBanner.jpeg'} textLine1={'Over 900'} textLine2={'Unique animals'} />
+        <ImageWithText imageUrl={EventsBanner} textLine1={'Over 900'} textLine2={'Unique animals'} />
+        <ImageWithText imageUrl={PackagesBanner} textLine1={'Over 900'} textLine2={'Unique animals'} />
       </div>
 
     </div>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 interface ImageWithTextProps {
     imageUrl: string
     textLine1: string;
-    textLine2: string;
+    textLine2?: string;
     textLine1CustomStyle?: string;
     renderBookNowButton?: boolean;
     routeToAnimalDetails?: boolean;
@@ -39,8 +39,7 @@ const ImageWithText = (props: ImageWithTextProps) => {
 
   return (
 
-    <div className={`bg-[url('${props.imageUrl}')] h-96 relative px-3`} onClick={selectAnimal}>
-
+    <div className={`bg-[url('${props.imageUrl}')] h-96 bg-cover relative px-3`} onClick={selectAnimal}>
       {
         props.renderBookNowButton &&
         <button type="button" className="focus:outline-none bg-yellow-custom hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 absolute top-2 right-2 font-nunito"
