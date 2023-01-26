@@ -9,4 +9,6 @@ export interface Pack {
 
     priceAdult: number;
     priceChild: number;
+
+    imageUrl: string;
 }

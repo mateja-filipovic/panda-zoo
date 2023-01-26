@@ -1,3 +1,5 @@
+import PackagesPageBackground from '@/assets/PackagesPageBackground.jpeg'
+
 import BookNowForm from "@/components/book-now-form"
 import ImageWithText from "@/components/image-with-text"
 import PageHero from "@/components/page-hero"
@@ -47,7 +49,7 @@ const PackagesPage = () => {
     <>
     <div className="mb-20">
 
-      <PageHero imageUrl={'@/assets/hero-image.jpeg'} title={"Title"} subtitle={"Subtitle"} />
+      <PageHero imageUrl={PackagesPageBackground} title={"Title"} subtitle={"Subtitle"} />
 
       <div className="flex justify-center gap-16 mt-10">
         <h2 className={`font-bold font-quick-sand text-2xl pb-2 hover:cursor-pointer ${addBorderIfFilterApplied('promotions')}`} onClick={() => handleFilterChange('promotions')}>Promotions</h2>
@@ -56,7 +58,7 @@ const PackagesPage = () => {
 
       <div className="container mx-auto grid grid-cols-1 gap-6 px-12 mt-12 md:grid-cols-3 md:px-40 md:mt-10">
         {
-          packages.map(pack => <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={pack.name} textLine2={pack.shortDescription} renderBookNowButton={true} textLine1CustomStyle={'text-yellow-custom'} onClickEventDelegate={openBookNowFormWithSelectedPack}  correspondingPack={pack}/> )
+          packages.map(pack => <ImageWithText imageUrl={pack.imageUrl} textLine1={pack.name} textLine2={pack.shortDescription} renderBookNowButton={true} textLine1CustomStyle={'text-yellow-custom'} onClickEventDelegate={openBookNowFormWithSelectedPack}  correspondingPack={pack}/> )
         }
       </div>
 
