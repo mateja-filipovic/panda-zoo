@@ -15,16 +15,16 @@ const LandingPage = () => {
       <HeroImage></HeroImage>
       
       <TextSection 
-        titleLine1={'LOREM'} 
-        titleLine2={'IPSUM'} 
-        introduction={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tellus elit, tempor in risus sed, pellentesque aliquet elit. Sed in sapien purus'} 
-        content={'Quisque eget risus a quam tincidunt vehicula et id tellus. Curabitur quam nibh, pulvinar vitae ornare tristique, lacinia nec nulla. Phasellus imperdiet nisi et mi fermentum dignissim eu sed ante. Integer sed dolor purus. Maecenas molestie lacinia nibh, ornare volutpat nulla tempor a. Vivamus ac tristique lectus. Suspendisse facilisis massa nec erat imperdiet malesuada. Quisque in rutrum lorem. Vestibulum non justo quis nibh tincidunt scelerisque in at ligula. Vivamus condimentum nec lacus quis vehicula. Nulla turpis lorem, pretium sodales enim aliquet, blandit molestie ligula.'}
+        titleLine1={'PANDA'} 
+        titleLine2={'ZOO'} 
+        introduction={'Panda Zoo is an incredible animal sanctuary located in the heart of a vibrant city.'} 
+        content={'It\'s a place where visitors can explore and learn about many different species of animals, with a focus on endangered and beloved pandas. The zoo is home to over 20 pandas in naturalistic habitats, and the staff is passionate about conservation and educating the public about the importance of preserving these animals. Panda Zoo also offers interactive exhibits, exciting animal shows, and educational programs. Visitors can take a ride on the Panda Express, an open-air train, to get up close and personal with the pandas. Whether you are visiting the zoo with friends or family, Panda Zoo is sure to be a unique and unforgettable experience.'}
         />
       
       <div className="container mx-auto grid grid-cols-1 gap-6 px-12 mt-12 md:grid-cols-3 md:px-40 md:mt-16">
-        <ImageWithText imageUrl={'/src/assets/AnimalsBanner.jpeg'} textLine1={'Over 900'} textLine2={'Unique animals'} />
-        <ImageWithText imageUrl={EventsBanner} textLine1={'Over 900'} textLine2={'Unique animals'} />
-        <ImageWithText imageUrl={PackagesBanner} textLine1={'Over 900'} textLine2={'Unique animals'} />
+        <ImageWithText imageUrl={AnimalsBanner} textLine1={'Over 900'} textLine2={'Unique animals'} pageUrl={"animals"} />
+        <ImageWithText imageUrl={EventsBanner} textLine1={'Incredible events'} textLine2={'Every month'} pageUrl={"events"} />
+        <ImageWithText imageUrl={PackagesBanner} textLine1={'Awesome packs'} textLine2={'for families & couples'} pageUrl={"packages"} />
       </div>
 
     </div>

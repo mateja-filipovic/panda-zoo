@@ -2,41 +2,53 @@ import CommentComponent from '@/components/comment'
 import CommentForm from '@/components/comment-form'
 import PageHero from '@/components/page-hero'
 import TextSection from '@/components/text-section'
+import { AnimalService } from '@/services/animal-service'
+import { CommentService } from '@/services/comment-service'
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-type Props = {}
 
-const AnimalDetailsPage = (props: Props) => {
+const AnimalDetailsPage = () => {
+
+  const routeParameters = useParams();
+  const [animal] = useState(AnimalService.getAnimalById(Number(routeParameters.id)));
+  const [comments, setComments] = useState(CommentService.getCommentsForAnimalId(animal.id));
+
+  const handleCommentAdded = () => {
+    setComments(CommentService.getCommentsForAnimalId(animal.id));
+  }
+
   return (
     <div className="mb-20">
-        <PageHero imageUrl={'@/assets/hero-image.jpeg'} title={"Title"} subtitle={"Subtitle"} />
+        <PageHero imageUrl={animal.imageUrl} title={animal.name} />
 
         <TextSection 
-          titleLine1={'LOREM'} 
-          titleLine2={'IPSUM'} 
-          introduction={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tellus elit, tempor in risus sed, pellentesque aliquet elit. Sed in sapien purus'} 
-          content={'Quisque eget risus a quam tincidunt vehicula et id tellus. Curabitur quam nibh, pulvinar vitae ornare tristique, lacinia nec nulla. Phasellus imperdiet nisi et mi fermentum dignissim eu sed ante. Integer sed dolor purus. Maecenas molestie lacinia nibh, ornare volutpat nulla tempor a. Vivamus ac tristique lectus. Suspendisse facilisis massa nec erat imperdiet malesuada. Quisque in rutrum lorem. Vestibulum non justo quis nibh tincidunt scelerisque in at ligula. Vivamus condimentum nec lacus quis vehicula. Nulla turpis lorem, pretium sodales enim aliquet, blandit molestie ligula.'}
+          titleLine1={animal.titleLine1} 
+          titleLine2={animal.titleLine2}
+          introduction={animal.introduction}
+          content={animal.description}
         />
 
         <div className="container mx-auto mt-8 mb-12 px-10 flex items-center text-center md:px-40">
-          <div className="w-full grid place-items-center text-center bg-yellow-custom h-20 mt-12">
-            <h2>2 Comments</h2>
+          <div className="w-full grid place-items-center text-center bg-yellow-custom h-20 mt-12 rounded-lg">
+            <h2>
+              {comments.length == 0 && 'No comments yet, be the first person to leave one!'}
+              {comments.length == 1 && `${comments.length} comment`}
+              {(comments.length != 0) && (comments.length !=1) && `${comments.length} comments`}
+              </h2>
           </div>
         </div>
 
-        <div className="container mx-auto px-10 md:px-40">
-          <div className="mb-6 md:mb-10">
-            <CommentComponent />
-          </div>
-          <div className="mb-6 md:mb-10">
-            <CommentComponent />
-          </div>
-          <div className="mb-6 md:mb-10">
-            <CommentComponent />
-          </div>
+        <div className="container mx-auto px-10 md:px-40 md:mb-16">
+          {comments.map(comment =>
+            <div className="mb-6 md:mb-10">
+              <CommentComponent author={comment.author} date={comment.time} content={comment.content} />
+            </div>
+          )}
         </div>
 
         <div className="container mx-auto px-10 md:px-40">
-          <CommentForm />
+          <CommentForm animalId={animal.id} commentAddedHandlerDelegate={handleCommentAdded} />
         </div>
     </div>
   )

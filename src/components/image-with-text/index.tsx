@@ -7,27 +7,35 @@ interface ImageWithTextProps {
     textLine2?: string;
     textLine1CustomStyle?: string;
     renderBookNowButton?: boolean;
-    routeToAnimalDetails?: boolean;
+    animalId?: number;
     onClickEventDelegate?: (pack: Pack | null) => void;
 
     correspondingPack?: Pack;
+    pageUrl?: string;
 }
-//'@/assets/hero-image.jpeg'
 
 const ImageWithText = (props: ImageWithTextProps) => {
 
   let navigate = useNavigate();
   
   const selectAnimal = () => {
-    if(props.routeToAnimalDetails == undefined || props.routeToAnimalDetails == null)
+    if(props.animalId == undefined || props.animalId == null)
       return;
-    navigate("/animals/some-animal")
+    navigate(`/animals/${props.animalId}`)
   }
 
   const handleBookNowOnClick = () => {
     if(props.onClickEventDelegate == undefined || props.onClickEventDelegate == null)
       return;
     props.onClickEventDelegate(props.correspondingPack ?? null);
+  }
+
+  const handleImageClick = () => {
+    if(props.pageUrl == undefined){
+      selectAnimal();
+      return;
+    }
+    navigate(`/${props.pageUrl}`);
   }
 
   const parseTextLine1CustomStyle = ():string => {
@@ -37,9 +45,15 @@ const ImageWithText = (props: ImageWithTextProps) => {
     return props.textLine1CustomStyle;
   }
 
+  const appendHoverEffectOnImageIfBookNowNotPresent = ():string => {
+    if(props.renderBookNowButton)
+      return '';
+    return 'hover:opacity-80'
+  }
+
   return (
 
-    <div style={{backgroundImage: `url(${props.imageUrl})`}} className={`h-96 bg-cover relative px-3`} onClick={selectAnimal}>
+    <div style={{backgroundImage: `url(${props.imageUrl})`}} className={`h-96 bg-center bg-cover relative px-3 rounded ${appendHoverEffectOnImageIfBookNowNotPresent()}`} onClick={handleImageClick}>
       {
         props.renderBookNowButton &&
         <button type="button" className="focus:outline-none bg-yellow-custom hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 absolute top-2 right-2 font-nunito"

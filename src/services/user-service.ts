@@ -64,6 +64,10 @@ export class UserService {
         return true;
     }
 
+    static getAllUsers(): User[]{
+        return this.allUsers;
+    }
+
     static isAuthenticated() : boolean{
         return this.getCurrentUser() != null;
     }

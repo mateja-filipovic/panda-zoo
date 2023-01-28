@@ -49,7 +49,7 @@ const PackagesPage = () => {
     <>
     <div className="mb-20">
 
-      <PageHero imageUrl={PackagesPageBackground} title={"Title"} subtitle={"Subtitle"} />
+      <PageHero imageUrl={PackagesPageBackground} title={"Packs"} subtitle={"For families, couples & individuals"} />
 
       <div className="flex justify-center gap-16 mt-10">
         <h2 className={`font-bold font-quick-sand text-2xl pb-2 hover:cursor-pointer ${addBorderIfFilterApplied('promotions')}`} onClick={() => handleFilterChange('promotions')}>Promotions</h2>

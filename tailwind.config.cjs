@@ -11,7 +11,8 @@ module.exports = {
         "primary": "#31E3C9",
         "footer": "#1A2125",
         "gray-introduction": "#555555",
-        "yellow-custom": "#FCD33F"
+        "yellow-custom": "#FCD33F",
+        "date-custom": "#B3B3B3"
       },
       "fontFamily": {
         "quick-sand": "QuickSand",

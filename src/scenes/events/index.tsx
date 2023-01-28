@@ -12,7 +12,7 @@ const EventsPage = () => {
   
   return (
     <div className="mb-20">
-      <PageHero imageUrl={EventsPageBackground} title={"Title"} subtitle={"Subtitle"} />
+      <PageHero imageUrl={EventsPageBackground} title={"Events"} subtitle={"Have a wild time at panda zoo!"} />
       
       <div className="container mx-auto grid grid-cols-3 gap-8 mt-16 px-36">
         {events.map(event => <Card event={event} />)}

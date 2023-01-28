@@ -13,7 +13,7 @@ const ProfilePage = (props: Props) => {
 
   return (
     <>
-      <div style={{backgroundImage: `url('/src/assets/hero-image.jpeg')`}} className="w-full">
+      <div style={{backgroundImage: `url('src/assets/login_background.jpeg')`}} className="w-full">
         <div className="container mx-auto py-16 px-8 md:px-40">
           <ProfileForm changePasswordDelegate={openModal} />
         </div>
