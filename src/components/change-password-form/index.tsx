@@ -16,20 +16,31 @@ const ChangePasswordForm = (props: ChangePasswordFormProps) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleChangePassword = () => {
-        let currentUser: User | null = UserService.getCurrentUser();
+        let currentUser: User = UserService.getCurrentUser();
+        console.log(currentUser);
 
-        if(currentUser == null)
+        if(newPassword == '' || confirmNewPassword == '' || oldPassword == ''){
+            setErrorMessage('All fields required')
             return;
-
-        if(newPassword == '' || confirmNewPassword == '' || oldPassword == '')
-            return;
+        }
         
-        if(newPassword != confirmNewPassword)
+        if(newPassword != confirmNewPassword){
             setErrorMessage('New password and confirmation do not match');
+            return;
+        }
+
+        if(oldPassword != currentUser.password){
+            setErrorMessage('Wrong old password');
+            return;
+        }
+
 
         let result = UserService.updateUserPassword(currentUser.id, newPassword);
         if(!result)
-            setErrorMessage('Failed to update password')
+            setErrorMessage('Failed to update password');
+
+        setErrorMessage('');
+        props.closeModalEventDelegate();
     }
 
     return(
@@ -45,24 +56,28 @@ const ChangePasswordForm = (props: ChangePasswordFormProps) => {
 
                     <div className="mb-6">
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Old password</label>
-                        <input type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" />
+                        <input type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" onChange={(e) => setOldPassword(e.target.value)}/>
                     </div>
 
                     <div className="mb-6">
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New password</label>
-                        <input type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" />
+                        <input type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" onChange={(e) => setNewPassword(e.target.value)}/>
                     </div>
 
                     <div className="mb-6">
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm</label>
-                        <input type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" />
+                        <input type="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" onChange={(e) => setConfirmNewPassword(e.target.value)}/>
                     </div>
 
-                    {errorMessage != '' && <p>{errorMessage}</p>}
+                    { errorMessage != '' &&
+                        <p className="text-sm font-nunito text-center text-red-500 opacity-70">
+                            {errorMessage}
+                        </p>
+                    }
                     
 
                     <div className="w-full flex justify-end">
-                        <button className="w-full bg-amber-300 rounded py-2 px-4 mb-4 md:w-fit">Change password</button>
+                        <button className="w-full bg-amber-300 rounded py-2 px-4 mb-4 md:w-fit" onClick={() => handleChangePassword()}>Change password</button>
                     </div>
                 </form>
 

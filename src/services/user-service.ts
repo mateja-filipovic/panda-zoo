@@ -2,6 +2,18 @@ import { User } from "@/model/user";
 
 export class UserService {
 
+    private static defaultUser: User = {
+        id: 1,
+        username: 'mateja',
+        password: 'test',
+        name: 'Mateja',
+        lastName: 'Filipovic',
+        phoneNumber: '+ 49 100 100',
+        email: 'mateja@example.com',
+        role: 'user'
+    };
+
+
     private static allUsers: User[] = [
         { id: 1, username: 'mateja', password: 'test', name: 'Mateja', lastName: 'Filipovic', phoneNumber: '+ 49 100 100', email: 'mateja@example.com', role: 'user'},
         { id: 2, username: 'ana', password: 'test', name: 'Ana', lastName: 'Galic', phoneNumber: '+ 49 100 101', email: 'ana@example.com', role: 'user'},
@@ -23,15 +35,18 @@ export class UserService {
         localStorage.removeItem('currentUser');
     }
 
-    static getCurrentUser(): User | null {
-        let jsonUser: string | null = localStorage.getItem('currentUser');
+    static getCurrentUser(): User {
+        let jsonUser = localStorage.getItem('currentUser');
+
         if(jsonUser == null)
-            return null;
+            return this.defaultUser;
+
         return JSON.parse(jsonUser)
     }
 
     static updateUser(id: number, username: string, name: string, lastName: string, phoneNumber: string, email: string): void {
         let userToUpdate: User | undefined = this.allUsers.find(x => x.id == id);
+
         if(userToUpdate == undefined || userToUpdate == null)
             return;
 
@@ -52,7 +67,7 @@ export class UserService {
 
         user.password = newPassword;
 
-        let currentUser: User | null = this.getCurrentUser();
+        let currentUser: User = this.getCurrentUser();
 
         if(currentUser == null)
             return true;
@@ -68,7 +83,7 @@ export class UserService {
         return this.allUsers;
     }
 
-    static isAuthenticated() : boolean{
+    static isAuthenticated() : boolean {
         return this.getCurrentUser() != null;
     }
 }
