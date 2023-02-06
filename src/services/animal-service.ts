@@ -111,6 +111,29 @@ export class AnimalService {
         }
     ]
 
+    static addNewAnimal(name: string, headline: string, descriptionTotal: string, imageUrl: string) {
+        let id = this.animals[this.animals.length - 1].id + 1;
+
+        let headlineWords = headline.split(" ");
+        let titleLine1 = headlineWords[0];
+        let titleLine2 = headlineWords.slice(1).join(" ");
+
+        let descriptionWords = descriptionTotal.split(".");
+        let introduction = descriptionWords[0];
+        let description = descriptionWords.slice(1).join("");
+
+
+        this.animals.push({
+            id,
+            name,
+            titleLine1,
+            titleLine2,
+            introduction,
+            description,
+            imageUrl
+        });
+    }
+
     static getAllAnimals(): Animal[]{
         return this.animals;
     }

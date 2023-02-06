@@ -1,31 +1,40 @@
-import React from 'react'
+interface RequestTableRowProps {
+    name: string,
+    lastName: string,
+    email: string,
+    pack: string,
+    price: number,
+    status: string
+}
 
-type Props = {}
-
-const RequestTableRow = (props: Props) => {
+const RequestTableRow = (props: RequestTableRowProps) => {
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <td className="px-6 py-4">
-            John
+            {props.name}
         </td>
         <td className="px-6 py-4">
-            Doe
+            {props.lastName}
         </td>
         <td className="px-6 py-4">
-            john.doe@example.com
+            {props.email}
         </td>
         <td className="px-6 py-4">
-            Family
+            {props.pack}
         </td>
         <td className="px-6 py-4">
-            $40.00
+            ${props.price}
         </td>
         <td className="px-6 py-4">
-            Approved
+            {props.status}
         </td>
         <td className="px-2 py-4">
-            <button className="bg-amber-300 rounded py-2 px-4 mr-2">Approve</button>
-            <button className="bg-amber-300 rounded py-2 px-4">Reject</button>
+            { props.status == 'Pending' &&
+            <>
+                <button className="bg-amber-300 rounded py-2 px-4 mr-2">Approve</button>
+                <button className="bg-amber-300 rounded py-2 px-4">Reject</button>
+            </>
+            }
         </td>
     </tr>
   )

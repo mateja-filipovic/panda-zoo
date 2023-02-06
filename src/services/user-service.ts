@@ -86,4 +86,5 @@ export class UserService {
     static isAuthenticated() : boolean {
         return this.getCurrentUser() != null;
     }
+
 }

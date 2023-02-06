@@ -24,8 +24,9 @@ const AnimalsPage = () => {
   }
 
   const getNumberOfPages = () => {
+    console.log('there is animals', animals.length);
     return (animals.length % 5 == 0) ?
-      animals.length / 5 : animals.length / 5 + 1;
+      Math.floor(animals.length / 5) : Math.floor(animals.length / 5) + 1;
   }
 
   return (
@@ -34,18 +35,13 @@ const AnimalsPage = () => {
       <div className="container mx-auto flex justify-center">
         <hr className="h-1 my-8 bg-primary border-0 w-60" />
       </div>
-      <div className="container mx-auto grid grid-cols-5 gap-4 mt-4">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-4 px-8 md:px-0">
         {animals
           .slice(currentPage * 5, 5 * (currentPage + 1))
           .map(animal => {
             return <ImageWithText imageUrl={animal.imageUrl} textLine1={animal.name} animalId={animal.id} textLine1CustomStyle={'text-yellow-custom'}/>
         })}
 
-        {/* <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} routeToAnimalDetails={true} textLine1CustomStyle={'text-yellow-custom'}/>
-        <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} routeToAnimalDetails={true} textLine1CustomStyle={'text-yellow-custom'}/>
-        <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} routeToAnimalDetails={true} textLine1CustomStyle={'text-yellow-custom'}/>
-        <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} routeToAnimalDetails={true} textLine1CustomStyle={'text-yellow-custom'}/>
-        <ImageWithText imageUrl={'@/assets/hero-image.jpeg'} textLine1={'Over 900'} routeToAnimalDetails={true} textLine1CustomStyle={'text-yellow-custom'}/> */}
       </div>
 
       <div className="flex justify-center items-center mt-12">

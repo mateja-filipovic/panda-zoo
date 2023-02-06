@@ -1,9 +1,11 @@
-import React from 'react'
+import { ZooRequest } from '@/model/request-zoo'
 import RequestTableRow from '../request-table-row'
 
-type Props = {}
+interface RequestTableProps {
+    requests: ZooRequest[]
+}
 
-const RequestTable = (props: Props) => {
+const RequestTable = (props: RequestTableProps) => {
   return (
     <table className="w-full text-sm text-left text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-amber-400">
@@ -32,10 +34,7 @@ const RequestTable = (props: Props) => {
             </tr>
         </thead>
         <tbody>
-            <RequestTableRow />
-            <RequestTableRow />
-            <RequestTableRow />
-            <RequestTableRow />
+            {props.requests.map(req => <RequestTableRow name={req.name} lastName={req.lastName} email={req.email} pack={req.pack} price={req.price} status={req.status} /> )}
         </tbody>
     </table>
   )
