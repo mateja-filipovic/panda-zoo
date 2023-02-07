@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const [showModal, setShowModal] = useState(false);
   
-  const [currentUser, setAdminCurrentlyLoggedIn] = useState(UserService.getCurrentUser());
+  const [currentUser] = useState(UserService.getCurrentUser());
 
   const closeModal = () => {
     setShowModal(false);
@@ -122,11 +122,11 @@ const Navbar = () => {
     <BellAlertIcon className="h-6 w-6 hidden md:block mr-8" onClick={() => setShowModal(true)}>
     </BellAlertIcon>
 
-      <a className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200">
+      <div className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200">
         <Link to="/login"  onClick={() => UserService.logout()}>
           Logout
         </Link>
-      </a>
+      </div>
     </div>
 
 	</nav>
@@ -177,13 +177,13 @@ const Navbar = () => {
 			<div className="mt-auto">
 				<div className="pt-6">
         <div className="flex items-center">
-          <BellAlertIcon className="h-6 w-6 hidden md:block mr-8" />
+          <BellAlertIcon className="h-6 w-6 hidden md:block mr-8" onClick={() => setShowModal(true)}/>
 
-            <a className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200">
+            <div className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200">
               <Link to="/login"  onClick={() => UserService.logout()}>
                 Logout
               </Link>
-            </a>
+            </div>
           </div>
 				</div>
 			</div>
